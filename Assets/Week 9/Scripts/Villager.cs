@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class Villager : MonoBehaviour
 {
     Rigidbody2D rb;
-    Animator animator;
+    protected Animator animator;
 
     bool clickingOnSelf;
     bool isSelected;

@@ -22,6 +22,10 @@ public class CharacterControl : MonoBehaviour
         if(SelectedVillager != null)
         {
             currentSelection.text = SelectedVillager.GetType().ToString();
+            if (currentSelection.text == "Thief")
+            {
+                currentSelection.text = "The Burglar";
+            }
         }
     }
 }
