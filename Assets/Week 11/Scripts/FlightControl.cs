@@ -9,6 +9,10 @@ public class FlightControl : MonoBehaviour
     public float turningSpeedReduction = 0.75f;
     Coroutine coroutine;
 
+    public void straight()
+    {
+        MoveForwards(10f);
+    }
     public void MakeTurn(float turn)
     {
         if (coroutine != null)
