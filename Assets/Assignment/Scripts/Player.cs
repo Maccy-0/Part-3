@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     float speed = 5;
     Rigidbody2D RB;
     public static Vector2 PlayerSpot;
+    public static Boolean KillSwitch = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +37,18 @@ public class Player : MonoBehaviour
             coroutine = StartCoroutine(Movement(Input.mousePosition));
             mouseState = 0;
         }
+        if (KillSwitch == true)
+        {
+            StartCoroutine(End());
+        }
     }
 
+    IEnumerator End()
+    {
+        yield return null;
+        yield return null;
+        KillSwitch = false;
+    }
     IEnumerator Movement(Vector2 point)
     {
         Vector3 diff = Camera.main.ScreenToWorldPoint(point) - transform.position;
@@ -50,7 +62,6 @@ public class Player : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, Camera.main.ScreenToWorldPoint(point), -0.01f);
             timer += 1;
             yield return null;
-            Debug.Log(point);
         }
 
         while (timer < 200)
@@ -58,10 +69,15 @@ public class Player : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, Camera.main.ScreenToWorldPoint(point), 0.05f);
             timer += 1;
             yield return null;
-            Debug.Log(point);
         }
 
 
         yield return null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        KillSwitch = true;
+        Debug.Log("Kill2");
     }
 }

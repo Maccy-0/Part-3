@@ -13,6 +13,7 @@ public class OrangeDart : Dart
     // Update is called once per frame
     void Update()
     {
+        Kill();
         Movement(0.01f);
     }
 

@@ -14,6 +14,7 @@ public class BlueDart : Dart
     // Update is called once per frame
     void Update()
     {
+        Kill();
         Movement(0.01f);
         Spin();
     }

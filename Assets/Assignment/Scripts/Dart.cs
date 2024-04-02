@@ -13,6 +13,7 @@ public class Dart : MonoBehaviour
     void Update()
     {
         Movement(0.01f);
+        Kill();
     }
 
     protected void starting()
@@ -33,7 +34,6 @@ public class Dart : MonoBehaviour
     }
     protected virtual void Movement(float Speed)
     {
-        Debug.Log(Player.PlayerSpot);
         Vector3 diff = Player.PlayerSpot - (Vector2)transform.position;
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
@@ -41,8 +41,11 @@ public class Dart : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, Player.PlayerSpot, Speed);
     }
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    protected void Kill()
     {
-        Debug.Log("PlayerHurt");
+        if (Player.KillSwitch == true)
+        {
+            Destroy(gameObject);
+        }
     }
 }

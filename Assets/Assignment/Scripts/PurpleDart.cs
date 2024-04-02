@@ -31,6 +31,7 @@ public class PurpleDart : Dart
     // Update is called once per frame
     void Update()
     {
+        Kill();
         Movement(0.02f);
         StartCoroutine(Size());
     }
@@ -45,6 +46,7 @@ public class PurpleDart : Dart
         transform.position = Vector2.MoveTowards(transform.position, endGoal, Speed);
         if (endGoal == (Vector2)transform.position)
         {
+            DartManager.amountOfObjects -= 1;
             Destroy(gameObject);
         }
     }
